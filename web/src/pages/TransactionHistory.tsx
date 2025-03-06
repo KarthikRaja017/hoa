@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Card, List, Avatar, Tag, Spin } from "antd";
-import { useIsMobile } from "../comman";
+import { CustomLoader, useIsMobile } from "../comman";
 import { getTransactions } from "../service";
 
 interface TransactionHistoryItem {
@@ -38,47 +38,31 @@ const TransactionHistory = () => {
   useEffect(() => {
     getTransactionsDetails();
   }, []);
+
+  if (loading) {
+    return <CustomLoader />;
+  }
+  
   return (
-    <>
-      {loading ? (
-        <div
-          style={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            width: "100vw",
-            height: "100vh",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            backgroundColor: "rgba(255, 255, 255, 0.8)",
-            zIndex: 9999,
-          }}
-        >
-          <Spin size="large" />
-        </div>
-      ) : (
-        <Card
-          title="Recent Transactions"
-          style={{ borderRadius: 12, width: isMobile ? "100%" : 570 }}
-        >
-          <List
-            itemLayout="horizontal"
-            dataSource={data}
-            renderItem={(item) => (
-              <List.Item>
-                <List.Item.Meta
-                  avatar={<Avatar src={item.avatar} />}
-                  title={<strong>{item.name}</strong>}
-                  description={`Date: ${item.date} | Amount: ${item.amount}`}
-                />
-                {getStatusTag(item.status)}
-              </List.Item>
-            )}
-          />
-        </Card>
-      )}
-    </>
+    <Card
+      title="Recent Transactions"
+      style={{ borderRadius: 12, width: isMobile ? "100%" : 570 }}
+    >
+      <List
+        itemLayout="horizontal"
+        dataSource={data}
+        renderItem={(item) => (
+          <List.Item>
+            <List.Item.Meta
+              avatar={<Avatar src={item.avatar} />}
+              title={<strong>{item.name}</strong>}
+              description={`Date: ${item.date} | Amount: ${item.amount}`}
+            />
+            {getStatusTag(item.status)}
+          </List.Item>
+        )}
+      />
+    </Card>
   );
 };
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { List, Avatar, Tag, Card, Spin } from "antd";
-import { useIsMobile } from "../comman";
+import { CustomLoader, useIsMobile } from "../comman";
 import { getMaintenanceRequest } from "../service";
 
 interface MaintenanceItem {
@@ -17,8 +17,7 @@ const statusColors: Record<StatusType, string> = {
   Resolved: "green",
 };
 
-const MaintenanceRequestList = (props: any) => {
-  const { setOpen, open } = props;
+const MaintenanceRequestList = () => {
   const isMobile = useIsMobile();
   const [data, setData] = useState<MaintenanceItem[]>([]);
   const [loading, setLoading] = useState(false);
@@ -30,58 +29,42 @@ const MaintenanceRequestList = (props: any) => {
     }
     setLoading(false);
   };
+  
   useEffect(() => {
     getMaintenanceRequests();
   }, []);
 
+  if (loading) {
+    return <CustomLoader />;
+  }
+
   return (
-    <>
-      {loading ? (
-        <div
-          style={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            width: "100vw",
-            height: "100vh",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            backgroundColor: "rgba(255, 255, 255, 0.8)",
-            zIndex: 9999,
-          }}
-        >
-          <Spin size="large" />
-        </div>
-      ) : (
-        <Card
-          title="Recent Maintenance Requests"
-          style={{
-            borderRadius: 12,
-            width: isMobile ? "100%" : 500,
-            maxWidth: 600,
-            height: isMobile ? "100%" : 450,
-          }}
-        >
-          <List
-            itemLayout="horizontal"
-            dataSource={data}
-            renderItem={(item) => (
-              <List.Item>
-                <List.Item.Meta
-                  avatar={<Avatar src={item.image} />}
-                  title={item.name}
-                  description={`Date: ${item.date}`}
-                />
-                <Tag color={statusColors[item.status as StatusType]}>
-                  {item.status}
-                </Tag>
-              </List.Item>
-            )}
-          />
-        </Card>
-      )}
-    </>
+    <Card
+      title="Recent Maintenance Requests"
+      style={{
+        borderRadius: 12,
+        width: isMobile ? "100%" : 500,
+        maxWidth: 600,
+        height: isMobile ? "100%" : 450,
+      }}
+    >
+      <List
+        itemLayout="horizontal"
+        dataSource={data}
+        renderItem={(item) => (
+          <List.Item>
+            <List.Item.Meta
+              avatar={<Avatar src={item.image} />}
+              title={item.name}
+              description={`Date: ${item.date}`}
+            />
+            <Tag color={statusColors[item.status as StatusType]}>
+              {item.status}
+            </Tag>
+          </List.Item>
+        )}
+      />
+    </Card>
   );
 };
 

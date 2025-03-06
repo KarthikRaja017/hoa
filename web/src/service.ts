@@ -1,7 +1,7 @@
 import request from "umi-request";
 
-// const API_URL = "http://localhost:5000/server/api";
-const API_URL = "/server/api";
+const API_URL = "http://localhost:5000/server/api";
+// const API_URL = "/server/api";
 
 export async function getInvoices(params: any) {
   return request(`${API_URL}/get/invoices`, {

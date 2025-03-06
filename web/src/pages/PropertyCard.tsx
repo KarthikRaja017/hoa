@@ -45,13 +45,7 @@ const PropertyCard = (props: any) => {
         }}
       >
         <div>
-          <p
-            style={{
-              fontSize: isMobile ? 10 : 12,
-              color: "#888",
-              margin: 0,
-            }}
-          >
+          <p style={{ fontSize: isMobile ? 10 : 12, color: "#888", margin: 0 }}>
             {title}
           </p>
           <h3 style={{ margin: 0, fontSize: isMobile ? 16 : 18 }}>{value}</h3>
@@ -59,11 +53,7 @@ const PropertyCard = (props: any) => {
         {extra && (
           <div>
             <p
-              style={{
-                fontSize: isMobile ? 10 : 12,
-                color: "#888",
-                margin: 0,
-              }}
+              style={{ fontSize: isMobile ? 10 : 12, color: "#888", margin: 0 }}
             >
               Total Units
             </p>

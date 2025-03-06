@@ -19,8 +19,6 @@ import {
 } from "@ant-design/icons";
 import { MessageModal, useIsMobile } from "../comman";
 import { useNavigate, useLocation } from "react-router-dom";
-import { getMaintenanceRequest } from "../service";
-import Notifications from "../pages/Notifications";
 
 const { Header } = Layout;
 interface MaintenanceItem {

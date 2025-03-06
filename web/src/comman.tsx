@@ -1,5 +1,5 @@
 import { ExclamationCircleOutlined } from "@ant-design/icons";
-import { Button, Modal, Typography } from "antd";
+import { Button, Modal, Spin, Typography } from "antd";
 import { useEffect, useState } from "react";
 
 export const getIsMobile = () => window.innerWidth <= 768;
@@ -55,5 +55,26 @@ export const MessageModal: React.FC<MessageModalProps> = ({
         <Text type="secondary">{message}</Text>
       </div>
     </Modal>
+  );
+};
+
+export const CustomLoader = () => {
+  return (
+    <div
+      style={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: "100vw",
+        height: "100vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "rgba(255, 255, 255, 0.8)",
+        zIndex: 9999,
+      }}
+    >
+      <Spin size="large" />
+    </div>
   );
 };

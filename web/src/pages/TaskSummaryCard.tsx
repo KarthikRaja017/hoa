@@ -14,7 +14,6 @@ const TaskSummaryCard = () => {
         width: isMobile ? "100%" : 350,
         borderRadius: 12,
         boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
-        padding: isMobile ? "12px" : "16px",
       }}
     >
       <Title level={isMobile ? 5 : 4} style={{ margin: 0 }}>
