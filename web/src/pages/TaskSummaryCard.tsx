@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { Card, Typography, Divider, Button } from "antd";
 import { ArrowRightOutlined } from "@ant-design/icons";
-import { useIsMobile } from "../comman";
+import { MessageModal, useIsMobile } from "../comman";
 
 const { Title, Text } = Typography;
 
 const TaskSummaryCard = () => {
   const isMobile = useIsMobile();
+  const [modalVisible, setModalVisible] = useState(false);
 
   return (
     <Card
@@ -36,10 +37,15 @@ const TaskSummaryCard = () => {
         ></div>
         <Text>3</Text>
       </div>
-      <Button type="link" size="small">
+      <Button type="link" size="small" onClick={() => setModalVisible(true)}>
         View all Tasks <ArrowRightOutlined />
       </Button>
 
+      <MessageModal
+        visible={modalVisible}
+        onClose={() => setModalVisible(false)}
+        message="The View all Tasks feature is currently under development. Please check back later!"
+      />
       <Divider style={{ margin: "12px 0" }} />
       <Text strong>Payments Waiting</Text>
 
