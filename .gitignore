@@ -1,0 +1,15 @@
+# Ignore environment files
+.env
+.venv/
+venv/
+node_modules/
+__pycache__/
+dist/
+public/
+*.log
+yarn.lock
+package-lock.json
+*.sqlite3
+*.pyc
+*.pyo
+*.DS_Store
