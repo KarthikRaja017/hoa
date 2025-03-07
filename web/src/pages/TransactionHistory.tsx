@@ -39,9 +39,9 @@ const TransactionHistory = () => {
     getTransactionsDetails();
   }, []);
 
-  // if (loading) {
-  //   return <CustomLoader />;
-  // }
+  if (loading) {
+    return <CustomLoader />;
+  }
   
   return (
     <Card

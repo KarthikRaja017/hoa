@@ -34,9 +34,9 @@ const MaintenanceRequestList = () => {
     getMaintenanceRequests();
   }, []);
 
-  // if (loading) {
-  //   return <CustomLoader />;
-  // }
+  if (loading) {
+    return <CustomLoader />;
+  }
 
   return (
     <Card

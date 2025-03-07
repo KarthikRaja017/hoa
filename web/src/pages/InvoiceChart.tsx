@@ -36,9 +36,9 @@ const InvoiceChart = () => {
     getInvoiceChartDetails();
   }, [year]);
 
-  // if (loading) {
-  //   return <CustomLoader />;
-  // }
+  if (loading) {
+    return <CustomLoader />;
+  }
 
   return (
     <Card

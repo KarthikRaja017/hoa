@@ -37,7 +37,7 @@ const ExpenseCard = () => {
 
   return (
     <>
-      {/* {loading && (
+      {loading && (
         <div
           style={{
             position: "fixed",
@@ -54,7 +54,7 @@ const ExpenseCard = () => {
         >
           <Spin size="large" />
         </div>
-      )} */}
+      )}
       <Card
         title="Expenses"
         extra={
